@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Here are some lists</h1>
+    <div>
+      <!-- <button>list 1</button>
+      <button>list 2</button> -->
+      
+      <div id="lists-container"></div>
+      <div id="list-items-container"></div>
+      <script>
+        function showList(){
+          console.log('it works');
+          fetch('/list-items')
+          .then(response => response.json())
+          .then(data => {
+            const listsContainer = document.getElementById('list-items-container');
+            listsContainer.innerHTML = ''
+            data.forEach(list => {
+              const listItem = document.createElement('li');
+              listItem.textContent = list;
+              listsContainer.appendChild(listItem);
+             
+
+            });
+          });
+        }
+        // Fetch data from the endpoint
+        fetch('/lists')
+          .then(response => response.json())
+          .then(data => {
+            const listsContainer = document.getElementById('lists-container');
+            data.forEach(list => {
+              const listItem = document.createElement('li');
+              listItem.textContent = list;
+              listsContainer.appendChild(listItem);
+              listItem.addEventListener('click', () => showList());
+              
+
+            });
+          });
+      </script>
+    </div>
+
+</body>
+</html>
